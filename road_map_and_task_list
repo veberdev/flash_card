@@ -1,4 +1,9 @@
 #1
 
-navbar
-login system using google email or twitter
+check: navbar
+check: login system using google email or twitter
+
+8/8/2022
+
+add some tests for login and users and routes
+only one user per email
