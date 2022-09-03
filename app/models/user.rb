@@ -15,4 +15,14 @@ class User < ApplicationRecord
       # user.skip_confirmation!
     end
   end
+
+  validates :full_name, presence: true
+
+  def first_name
+    user.full_name.split(' ').[0]
+  end
+
+  def last_name
+    user.full_name.split(' ').[1..-1].join(' ')
+  end
 end
