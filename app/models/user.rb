@@ -16,6 +16,8 @@ class User < ApplicationRecord
     end
   end
 
+  has_many :decks
+
   validates :full_name, presence: true
 
   def first_name
