@@ -25,6 +25,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'rubocop'
   gem 'rubocop-rails', require: false
+  gem 'pry-rails'
 end
 
 group :development do
