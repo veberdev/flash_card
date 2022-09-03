@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "pages#index"
+  root 'pages#index'
 
   # devise_scope :user do
   #   root 'devise/registrations#new'
