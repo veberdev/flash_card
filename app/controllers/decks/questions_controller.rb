@@ -3,7 +3,7 @@ module Decks
     before_action :authenticate_user!
 
     def index
-      @questions = Deck.find(1).questions
+      @questions = Deck.find(params[:deck_id]).questions
     end
 
     def new
@@ -11,8 +11,17 @@ module Decks
     end
 
     def create
+      @question = Deck.find(params[:deck_id]).questions.create(
+          question: params[:question], 
+          correct_answer: params[:correct_answer], 
+          wrong_answers: params[:wrong_answers], 
+          question_type: params[:question_type])
 
-      @questions = Deck.find(1)
+      if @question.save
+        redirect_to deck_questions_path(params[:deck_id])
+      else
+        render :new
+      end
     end
 
     def update
@@ -25,8 +34,8 @@ module Decks
 
     private
 
-    def questions_params
-      params.require(:question, :correct_answer, :wrong_answers)
+    def question_params
+      params.permit(:question, :correct_answer, :wrong_answers, :question_type, :deck_id, :controller)
     end
   end
 end
