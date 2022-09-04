@@ -1,27 +1,31 @@
 <div class="container mx-auto py-16">
-  <ul role="list" class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-4 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8">
-    <% @decks.each do |deck| %>
-      <li class="relative shadow-lg bg-white ">
-        <div class="group block w-full aspect-w-10 aspect-h-7 rounded-t-lg bg-gray-100 overflow-hidden pointer-events-none ">
-           <%= image_tag default_image(deck), class: 'object-cover' %> 
-          <button type="button" class="absolute inset-0 focus:outline-none">
-            <span class="sr-only">View details for IMG_4985.HEIC</span>
-          </button>
-        </div>
-        <div class="p-6">
-          <h5 class="text-gray-900 text-xl font-medium mb-2">Deck's name here</h5>
-          <p class="block text-sm font-medium text-gray-500 pointer-events-none">Description deck</p>
-          <p class="block text-sm font-medium text-gray-500 pointer-events-none">Retention rate: 93%</p>
-          <p class="block text-sm font-medium text-gray-500 pointer-events-none">Number of cards: 31</p>
-          <%= link_to "Edit", deck_path(deck),
-            class: 'inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
-          %>
-          <%= link_to "Study", "/",
-            class: 'inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
-          %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+  <% if @decks.empty? %>
+    <h3> You don't have any decks yet. Create one and start to study! </h3>
+  <% else %>
+    <ul role="list" class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-4 sm:gap-x-6 lg:grid-cols-5 xl:gap-x-8">
+      <% @decks.each do |deck| %>
+        <li class="relative shadow-lg bg-white ">
+          <div class="group block w-full aspect-w-10 aspect-h-7 rounded-t-lg bg-gray-100 overflow-hidden pointer-events-none ">
+             <%= image_tag default_image(deck), class: 'object-cover' %> 
+            <button type="button" class="absolute inset-0 focus:outline-none">
+              <span class="sr-only">View details for IMG_4985.HEIC</span>
+            </button>
+          </div>
+          <div class="p-6">
+            <h5 class="text-gray-900 text-xl font-medium mb-2">Deck's name here</h5>
+            <p class="block text-sm font-medium text-gray-500 pointer-events-none">Description deck</p>
+            <p class="block text-sm font-medium text-gray-500 pointer-events-none">Retention rate: 93%</p>
+            <p class="block text-sm font-medium text-gray-500 pointer-events-none">Number of cards: 31</p>
+            <%= link_to "Edit", deck_path(deck),
+              class: 'inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
+            %>
+            <%= link_to "Study", "/",
+              class: 'inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out'
+            %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
-
+<%= console %>
