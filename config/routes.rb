@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
- resources :dashboard, only: :index
+  resources :dashboard, only: :index
 
+  resources :decks
 end
