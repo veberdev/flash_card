@@ -5,7 +5,9 @@ export default class extends Controller {
   static targets = ['questionTypeField', 'wrongAnswersFields'];
 
   connect() {
+    
     this.questionTypeFieldTarget.addEventListener('change', () => {
+      console.log("im here at new question controller")
       if (this.questionTypeFieldTarget.value == 'user_correction') {
         leave(this.wrongAnswersFieldsTarget);
       } else {
