@@ -11,7 +11,6 @@ module Decks
     end
 
     def create
-      binding.pry
       @question = Deck.find(params[:deck_id]).questions.create(
           question: params[:question], 
           correct_answer: params[:correct_answer], 
@@ -21,7 +20,7 @@ module Decks
       if @question.save
         redirect_to deck_questions_path(params[:deck_id])
       else
-        render :new
+        redirect_to root_path 
       end
     end
 
@@ -36,7 +35,6 @@ module Decks
     private
 
     def question_params
-      binding.pry
       params.permit(:question, :correct_answer, :wrong_answers, :question_type, :deck_id, :controller)
     end
   end
