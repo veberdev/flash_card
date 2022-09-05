@@ -4,32 +4,32 @@
       <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="bg-white py-6 px-4 space-y-7 sm:p-6">
           <div>
-            <h3 class="text-lg leading-5 font-medium text-gray-900">Update your Deck</h3>
-            <p class="mt-1 text-sm text-gray-500">Use this form to update your deck attributes.</p>
+            <h3 class="text-lg leading-5 font-medium text-gray-900">Create new question</h3>
+            <p class="mt-1 text-sm text-gray-500">Use this form to create new questions.</p>
           </div>
 
           <div class="grid grid-cols-6 gap-6">
 
-            <div class="col-span-6 sm:col-span-6" data-new-question-target="questionTypeField">
+            <div class="col-span-6 sm:col-span-6"  >
               <%= f.label :question_type, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.select :question_type, Question::QUESTION_TYPES, {}, { :class => 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm' } %>
+              <%= f.select :question_type, Question::QUESTION_TYPES, {}, { :class => 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm', 'data-new-question-target': 'questionTypeField'} %>
             </div>
 
             <div class="col-span-6 sm:col-span-6">
               <%= f.label :question, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.text_field :question, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              <%= f.text_field :question, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: 'type the question here' %>
             </div>
 
             <div class="col-span-6 sm:col-span-6">
               <%= f.label :correct_answer, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.text_area :correct_answer, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              <%= f.text_area :correct_answer, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: 'type the correct answer here'%>
             </div>
 
-            <div class="col-span-6 sm:col-span-6">
+            <div class="col-span-6 sm:col-span-6" data-new-question-target="wrongAnswersFields">
               <%= f.label :wrong_answers, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.text_area :wrong_answers, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", multiple: true %>
-              <%= f.text_area :wrong_answers, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", multiple: true %>
-              <%= f.text_area :wrong_answers, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", multiple: true%>
+              <%= f.text_area :wrong_answers, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: '1st question here', multiple: true %>
+              <%= f.text_area :wrong_answers, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: '2st question here', multiple: true %>
+              <%= f.text_area :wrong_answers, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm", placeholder: '3st question here', multiple: true%>
             </div>
 
           </div>
