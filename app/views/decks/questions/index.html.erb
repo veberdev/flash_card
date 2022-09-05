@@ -1,6 +1,7 @@
-<div class="h-full bg-gray-100">
+<div class="h-full bg-gray-100" data-controller="questions">
   <main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
     <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+      <div data-questions-target="questionTypeField">ashjdu</div>
       <%= render "decks/sidebar", deck: params[:deck_id] %>
 
       <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
@@ -14,7 +15,7 @@
         </div>
 
         <% if @questions.empty? %>
-          <h4> You do not havy ant questions yet! </h4>
+          <h4> You do not have any questions yet! </h4>
         <% else %>
         <div class="bg-white shadow overflow-hidden sm:rounded-md">
           <ul role="list" class="divide-y divide-gray-200">
@@ -63,3 +64,5 @@
     </div>
   </main>
 </div>
+
+<%= render "shared/modal", modal_trigger_id: "new-question", modal_content: "new_question" %>
