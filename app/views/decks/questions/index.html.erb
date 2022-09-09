@@ -13,9 +13,6 @@
           </div>
         </div>
 
-          <div class="ml-4 mt-2 flex-shrink-0" >
-            <%= link_to "Test update", "", class: "relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-          </div>
 
         <% if @questions.empty? %>
           <h4> You do not have any questions yet! </h4>
@@ -24,7 +21,7 @@
           <ul role="list" class="divide-y divide-gray-200">
             <% @questions.each do |question| %>
               <li>
-                <%= link_to root_path, class: "block hover:bg-gray-50" do %>
+                <%= link_to "", class: "block hover:bg-gray-50", id: "#{question.id}",'data-questions--questions-target': 'update' do %>
                   <div class="flex items-center px-4 py-4 sm:px-6">
                     <div class="min-w-0 flex-1 flex items-center">
                       <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
@@ -66,8 +63,8 @@
       </div>
     </div>
   </main>
+  
+    <%= render "shared/modal", modal_trigger_id: "update-question", modal_content: "update" %>
 </div>
 
 <%= render "shared/modal", modal_trigger_id: "new-question", modal_content: "new_question" %>
-<%= render "shared/modal", modal_trigger_id: "update-question", modal_content: "update" %>
-

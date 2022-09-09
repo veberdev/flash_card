@@ -11,26 +11,26 @@ module Decks
     end
 
     def create
-      @question = Deck.find(params[:deck_id]).questions.create(
-          question: params[:question], 
-          correct_answer: params[:correct_answer], 
-          wrong_answers: params[:wrong_answers], 
-          question_type: params[:question_type])
+      @question = Deck.find(params[:deck_id]).questions.create(question_params)
 
       if @question.save
         redirect_to deck_questions_path(params[:deck_id])
       else
-        redirect_to root_path 
+        head :unprocessable_entity
       end
     end
     
     def show
-      
-      @question = Question.find(1)
-
+      @question = Question.find(params[:id])
     end
 
     def update
+      @question = Question.find(params[:id])
+      if @question.update(question_params)
+        redirect_to deck_question_path(params[:deck_id]) 
+      else
+          
+      end
 
     end
 
@@ -41,7 +41,7 @@ module Decks
     private
 
     def question_params
-      params.permit(:question, :correct_answer, :wrong_answers, :question_type, :deck_id, :controller, :question_id)
+      params.permit(:question, :correct_answer, :question_type, {wrong_answers: []})
     end
   end
 end

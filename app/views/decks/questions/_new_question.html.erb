@@ -1,6 +1,6 @@
 <div class="space-y-6 " data-controller="questions--new-question">
   <div class="bg-white overflow-hidden sm:rounded-md">
-    <%= form_with url: deck_questions_path do |f| %>
+    <%= form_with url: deck_questions_path, local: true do |f| %>
       <div class="shadow sm:rounded-md sm:overflow-hidden">
         <div class="bg-white py-6 px-4 space-y-7 sm:p-6">
           <div>
