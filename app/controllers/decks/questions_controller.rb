@@ -23,6 +23,12 @@ module Decks
         redirect_to root_path 
       end
     end
+    
+    def show
+      
+      @question = Question.find(1)
+
+    end
 
     def update
 
@@ -35,7 +41,7 @@ module Decks
     private
 
     def question_params
-      params.permit(:question, :correct_answer, :wrong_answers, :question_type, :deck_id, :controller)
+      params.permit(:question, :correct_answer, :wrong_answers, :question_type, :deck_id, :controller, :question_id)
     end
   end
 end

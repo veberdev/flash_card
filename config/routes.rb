@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :dashboard, only: :index
 
   resources :decks do
-      resources :questions, only: [:index, :new, :create, :update, :destroy], controller: 'decks/questions'
+      resources :questions, only: [:index, :new, :create, :show, :update, :destroy], controller: 'decks/questions'
   end
 
 end

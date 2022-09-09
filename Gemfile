@@ -8,6 +8,8 @@ gem 'bootsnap', require: false
 gem 'devise'
 gem 'importmap-rails'
 gem 'jbuilder'
+gem 'jsonapi-serializer'
+gem 'jbuilder'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sassc-rails' # Use Sass to process CSS
