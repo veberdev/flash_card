@@ -16,7 +16,6 @@ module Decks
       if @question.save
         redirect_to deck_questions_path(params[:deck_id])
       else
-        head :unprocessable_entity
       end
     end
     
@@ -41,7 +40,7 @@ module Decks
     private
 
     def question_params
-      params.permit(:question, :correct_answer, :question_type, {wrong_answers: []})
+      params.permit(:question, :correct_answer, :question_type, :wrong_answer_n1, :wrong_answer_n2, :wrong_answer_n3 )
     end
   end
 end

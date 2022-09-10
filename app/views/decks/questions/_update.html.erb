@@ -12,8 +12,8 @@
 
             <div class="col-span-6 sm:col-span-6"  >
               <%= f.label :question_type, class: "block text-sm font-medium text-gray-700" %>
-              <%= f.select :question_type, Question::QUESTION_TYPES, {}, { :class => 'mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
-                                                                           'data-questions--questions-target':'questionTypeField'} %>
+              <%= f.text_field :question_type, :class => 'mt-1 block w-full bg-gray-200 border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-indigo-500 sm:text-sm',
+                                                                           'data-questions--questions-target':'questionTypeField', readonly: true %>
             </div>
 
             <div class="col-span-6 sm:col-span-6">
