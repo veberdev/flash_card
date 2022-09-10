@@ -16,6 +16,7 @@ module Decks
       if @question.save
         redirect_to deck_questions_path(params[:deck_id])
       else
+        head :unprocessable_entity
       end
     end
     
@@ -28,7 +29,7 @@ module Decks
       if @question.update(question_params)
         redirect_to deck_question_path(params[:deck_id]) 
       else
-          
+        head :unprocessable_entity
       end
 
     end
