@@ -67,4 +67,6 @@
     <%= render "shared/modal", modal_trigger_id: "update-question", modal_content: "update" %>
 </div>
 
+
+<%= paginate @questions %>
 <%= render "shared/modal", modal_trigger_id: "new-question", modal_content: "new_question" %>

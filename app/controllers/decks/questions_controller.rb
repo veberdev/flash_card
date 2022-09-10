@@ -3,7 +3,7 @@ module Decks
     before_action :authenticate_user!
 
     def index
-      @questions = Deck.find(params[:deck_id]).questions
+      @questions = Deck.find(params[:deck_id]).questions.order(:created_at).page(params[:page])
     end
 
     def new

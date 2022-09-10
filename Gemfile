@@ -10,6 +10,7 @@ gem 'importmap-rails'
 gem 'jbuilder'
 gem 'jsonapi-serializer'
 gem 'jbuilder'
+gem 'kaminari'
 gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'sassc-rails' # Use Sass to process CSS

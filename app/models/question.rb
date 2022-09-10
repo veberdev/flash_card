@@ -1,4 +1,6 @@
 class Question < ApplicationRecord
+  paginates_per 10 
+
   belongs_to :deck
 
   QUESTION_TYPES = ["multiple_choice", "user_correction"]
