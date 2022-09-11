@@ -1,7 +1,6 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+me = User.create(full_name: "Weslley Lucas Silva dos Santos", email: "weslusisa@gmail.com", password: "102030")
+
+my_first_deck = Deck.create(name: "first deck", description: "deck for tests purpose", user: me) 
+
+Question.create(question: "Meu primeiro nome", question_type: "multiple_choice", correct_answer: "Weslley", 
+                wrong_answer_n1: "Joao", wrong_answer_n2: "Pedro", wrong_answer_n3: "Lucas", deck: my_first_deck)
