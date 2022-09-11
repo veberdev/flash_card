@@ -13,7 +13,7 @@
           </div>
         </div>
 
-<%= paginate @questions %>
+        <%= paginate @questions %>
 
         <% if @questions.empty? %>
           <h4> You do not have any questions yet! </h4>
@@ -27,7 +27,7 @@
                     <div class="min-w-0 flex-1 flex items-center">
                       <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                         <div>
-                          <p class="text-sm font-medium text-indigo-600 truncate"><%= "question name" %></p>
+                          <p class="text-sm font-medium text-indigo-600 truncate"><%= truncate question.question, length: 30 %></p>
                           <p class="mt-2 flex items-center text-sm text-gray-500">
                             <span class="truncate"><%= "nome" %></span>
                           </p>
@@ -35,7 +35,7 @@
                         <div class="hidden md:block">
                           <div>
                             <p class="text-sm text-gray-900">
-                              Created on 01/01/2022
+                              Created on <%= question.created_at.strftime('%d/%m/%Y')%>
                             </p>
                             <p class="mt-2 flex items-center text-sm text-gray-500">
                               <!-- Heroicon name: solid/check-circle -->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_10_172539) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_11_154130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,13 +56,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_172539) do
   end
 
   create_table "question_data", force: :cascade do |t|
-    t.bigint "question_id", null: false
-    t.integer "retention_spectrum"
+    t.bigint "questions_id", null: false
+    t.integer "retention_rate"
     t.integer "correct_times"
+    t.integer "times_done"
     t.integer "show_up_coeficient"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_question_data_on_question_id"
+    t.index ["questions_id"], name: "index_question_data_on_questions_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -97,6 +98,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_10_172539) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "decks", "users"
-  add_foreign_key "question_data", "questions"
+  add_foreign_key "question_data", "questions", column: "questions_id"
   add_foreign_key "questions", "decks"
 end
