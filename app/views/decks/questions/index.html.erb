@@ -13,6 +13,7 @@
           </div>
         </div>
 
+<%= paginate @questions %>
 
         <% if @questions.empty? %>
           <h4> You do not have any questions yet! </h4>
@@ -68,5 +69,4 @@
 </div>
 
 
-<%= paginate @questions %>
 <%= render "shared/modal", modal_trigger_id: "new-question", modal_content: "new_question" %>
