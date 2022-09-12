@@ -3,7 +3,8 @@ module Decks
     before_action :authenticate_user!
 
     def index
-      @question = Deck.find(params[:deck_id]).questions.to_study
+      @question = Question.find(1)
+      #@question = Deck.find(params[:deck_id]).questions.to_study
     end
 
     def update

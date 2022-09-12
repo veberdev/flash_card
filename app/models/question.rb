@@ -25,6 +25,7 @@ class Question < ApplicationRecord
   end
 
   def self.to_study
-    QuestionData.where(question_id: self.pluck(:id)).order(:show_up_coeficient).first
+    QuestionData.where(question_id: self.pluck(:id)).order(:show_up_coeficient).first.question
   end
+
 end
