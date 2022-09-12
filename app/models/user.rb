@@ -16,7 +16,7 @@ class User < ApplicationRecord
     end
   end
 
-  has_many :decks
+  has_many :decks, dependent: :delete_all
 
   validates :full_name, presence: true
 
@@ -25,7 +25,6 @@ class User < ApplicationRecord
   end
 
   def last_name
-   full_name.split(" ")[1..-1].join(" ")
+    full_name.split(' ')[1..-1].join(' ')
   end
-
 end

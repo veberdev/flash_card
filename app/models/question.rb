@@ -3,9 +3,9 @@ class Question < ApplicationRecord
 
   belongs_to :deck
 
-  has_one :question_data
+  has_one :question_data, dependent: :destroy
 
-  QUESTION_TYPES = ["multiple_choice", "user_correction"]
+  QUESTION_TYPES = %w[multiple_choice user_correction].freeze
 
   validates :question_type, inclusion: { in: QUESTION_TYPES }, presence: true
   validates :question, presence: true
@@ -17,12 +17,10 @@ class Question < ApplicationRecord
   after_create :create_question_data
 
   def presence_of_wrong_answers?
-    self.question_type == "multiple_choice"
+    question_type == 'multiple_choice'
   end
 
-  def create_question_data 
+  def create_question_data
     self.question_data = QuestionData.create
   end
-
-
 end

@@ -1,8 +1,8 @@
 class DecksController < ApplicationController
   before_action :authenticate_user!
-  
-  def show 
-    @deck = Deck.find(params[:id]) 
+
+  def show
+    @deck = Deck.find(params[:id])
   end
 
   def new
@@ -12,12 +12,11 @@ class DecksController < ApplicationController
   def create
     @deck = current_user.decks.new(deck_params)
 
-    if @deck.save 
-      redirect_to dashboard_index_path 
+    if @deck.save
+      redirect_to dashboard_index_path
     else
       render :new
     end
-
   end
 
   def update

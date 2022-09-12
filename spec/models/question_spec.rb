@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Question, type: :model do
-
   it { should belong_to(:deck) }
-  it { should have_one(:question_data) }
+  it { should have_one(:question_data).dependent(:destroy) }
   it { should validate_inclusion_of(:question_type).in_array(Question::QUESTION_TYPES) }
   it { should validate_presence_of(:correct_answer) }
   context 'question_type == multiple_choice' do

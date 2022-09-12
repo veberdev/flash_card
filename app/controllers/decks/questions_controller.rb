@@ -1,4 +1,4 @@
-module Decks 
+module Decks
   class QuestionsController < ApplicationController
     before_action :authenticate_user!
 
@@ -19,7 +19,7 @@ module Decks
         head :unprocessable_entity
       end
     end
-    
+
     def show
       @question = Question.find(params[:id])
     end
@@ -27,21 +27,18 @@ module Decks
     def update
       @question = Question.find(params[:id])
       if @question.update(question_params)
-        redirect_to deck_question_path(params[:deck_id]) 
+        redirect_to deck_question_path(params[:deck_id])
       else
         head :unprocessable_entity
       end
-
     end
 
-    def destroy
-
-    end
+    def destroy; end
 
     private
 
     def question_params
-      params.permit(:question, :correct_answer, :question_type, :wrong_answer_n1, :wrong_answer_n2, :wrong_answer_n3 )
+      params.permit(:question, :correct_answer, :question_type, :wrong_answer_n1, :wrong_answer_n2, :wrong_answer_n3)
     end
   end
 end
