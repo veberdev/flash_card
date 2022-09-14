@@ -11,6 +11,7 @@ module Decks
     end
 
     def update
+      binding.pry
       @question_data = Question.find(params[:id]).question_data
       @question_data.update_data(params[:question][:correct_answer])
       redirect_to deck_study_index_path(params[:deck_id])

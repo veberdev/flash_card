@@ -2,27 +2,18 @@ import { Controller } from '@hotwired/stimulus'
 import { isEmpty } from 'lodash-es';
 
 export default class extends Controller {
-  static targets = ['render', 'inputField', 'toSubmitField', 'submitBtn', 'form', 'panel']
+  static targets = ['render', 'inputField', 'toSubmitField', 'form', 'panel']
 
-  connect() {
+  check_empty_value(event) {
+    event.preventDefault();
+    if (isEmpty(this.toSubmitFieldTarget.value)) {
+      shake(this.renderTarget);
+      this.panelTarget.classList.add('border-red-500')
+    } else {
+      this.formTarget.submit();
+    }
 
-    this.inputFieldTargets.forEach(element => {
-      element.addEventListener('click', (e) => {
-        this.toSubmitFieldTarget.value = e.target.value;
-      })
-    })
-
-    this.submitBtnTarget.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (isEmpty(this.toSubmitFieldTarget.value)) {
-        shake(this.renderTarget);
-        this.panelTarget.classList.add('border-red-500')
-      } else {
-        this.formTarget.submit();
-      }
-    })
-
-    var shake = function (element, magnitude = 16, angular = false) {
+    function shake  (element, magnitude = 16, angular = false) {
       var tiltAngle = 1;
       var counter = 1;
       var numberOfShakes = 15;
@@ -51,5 +42,19 @@ export default class extends Controller {
       }
     };
 
+  }
+  connect() {
+
+    document.addEventListener('click', (e) => {
+      if (!(e.target.dataset.studyTarget == "inputField" )) {
+        this.toSubmitFieldTarget.value = "";
+      }
+    }) 
+
+    this.inputFieldTargets.forEach(element => {
+      element.addEventListener('click', (e) => {
+        this.toSubmitFieldTarget.value = e.target.value;
+      })
+    })
   }
 }

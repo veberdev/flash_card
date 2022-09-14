@@ -35,10 +35,11 @@
 
 <div class="col-span-6 text-right">
   <%= form_with model: @question, url: deck_study_path(@question.deck.id, @question.id), local: true,  html: {'data-study-target':'form'} do |x| %>
-    <%= x.text_field 'correct_answer', value: '', class:'hidden', 'data-study-target':'toSubmitField' %>
+    <%= x.text_field 'correct_answer', value: '', class:'', 'data-study-target':'toSubmitField' %>
     <%= link_to "Exit", root_path,  class:'bg-red-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500' %>
     <%= x.submit "submit", class: 'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
-        'data-study-target':'submitBtn'
+      'data-action':'click->study#check_empty_value',
+      'data-study-target':'submitBtn'
     %>
     
   <% end %>
