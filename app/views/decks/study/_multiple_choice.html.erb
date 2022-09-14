@@ -6,36 +6,40 @@
   <h3 class="text-center text-lg leading-6 font-medium text-gray-900"><%= @question.question %></h3>
 </div>
 
+<% shuffled_questions = @question.attributes.select { |k, v|  k == "correct_answer" || k.include?("wrong") }.values.shuffle %>
+
 <div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag @question.wrong_answer_n1, @question.wrong_answer_n1, class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+  <%= text_area_tag shuffled_questions[0], shuffled_questions[0], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
     'data-study-target':'inputField',
     readonly: true %>
 </div>
 
 
 <div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag @question.wrong_answer_n2, @question.wrong_answer_n2, class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+  <%= text_area_tag shuffled_questions[1], shuffled_questions[1], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+    'data-study-target':'inputField',
+    readonly: true %>
+</div>
+
+<div class="col-span-6 sm:col-span-3 red">
+  <%= text_area_tag shuffled_questions[2], shuffled_questions[2], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
     'data-study-target':'inputField',
     readonly: true %>
 </div>
 
 <div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag @question.wrong_answer_n3, @question.wrong_answer_n3, class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-    'data-study-target':'inputField',
-    readonly: true %>
-</div>
-
-<div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag @question.correct_answer, @question.correct_answer, class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+  <%= text_area_tag shuffled_questions[3], shuffled_questions[3], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
     'data-study-target':'inputField',
     readonly: true %>
 </div>
 
 <div class="col-span-6 text-right">
-  <%= form_with model: @question, url: deck_study_path(:deck_id, @question.id), local: true do |x| %>
-    <%= x.text_field :correct_answer, class:'hidden', 'data-study-target':'toSubmitField' %>
+  <%= form_with model: @question, url: deck_study_path(@question.deck.id, @question.id), local: true,  html: {'data-study-target':'form'} do |x| %>
+    <%= x.text_field 'correct_answer', value: '', class:'hidden', 'data-study-target':'toSubmitField' %>
     <%= link_to "Exit", root_path,  class:'bg-red-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500' %>
-    <%= x.submit "submit", class: 'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500' %>
+    <%= x.submit "submit", class: 'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+        'data-study-target':'submitBtn'
+    %>
     
   <% end %>
 </div>
