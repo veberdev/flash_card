@@ -1,5 +1,54 @@
-<h1> question type: user_correction #n2 </h1>
-<div class="col-span-6 sm:col-span-4">
-  <%= f.label :question_type, class: "block text-sm font-medium text-gray-700" %>
-  <%= f.text_field :question_type, class: "mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+<div class="h-full bg-gray-100" data-controller="study--user-correction" >
+  <main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-10">
+      <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
+        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+            <div class="shadow sm:rounded-md sm:overflow-hidden border">
+              <div class="bg-white py-6 px-4 space-y-6 sm:p-6" >
+                <div class="grid grid-cols-6 gap-6">
+
+                  <div class="col-span-6 sm:col-span-6">
+                    <div class="col-span-6">
+                      <h3 class="text-lg leading-6 font-medium text-gray-900">Think about the answer, then turn the card. 
+                        After that, ask yourself if you were right and then hit <span class="text-red-500">yes</span> or <span class="text-indigo-500">no</span> buttons according to it</h3>
+                    </div>
+                      <div class="col-span-6 sm:col-span-3">
+                        <%= text_area_tag @question.question, @question.question, class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                          id: 'questionBox',
+                          rows: '10',
+                          readonly: true %>
+                        <%= text_area_tag @question.correct_answer, @question.correct_answer, class: "hidden hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                          id: 'answerBox',
+                          rows: '10',
+                          readonly: true %>
+                      </div>
+                  </div>
+                  <div class="col-span-6">
+                    <%= button_tag "turn card",
+                        'data-action':'click->study--user-correction#turnCard',
+                        class:'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white 
+                      hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                     %>
+                  </div>
+                  <div class="col-span-6 text-right">
+                    <%= form_with model: @question, url: deck_study_path(@question.deck.id, @question.id), local: true do |x| %>
+                      <%= x.text_field 'correct_answer', value: @question.correct_answer, class:'hidden', 'data-study--user-correction-target':'hiddenTextField' %>
+                      <%= button_tag "No",
+                        'data-study--user-correction-target':'nobtn',
+                        class:'bg-red-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white 
+                        hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500' %>
+                      <%= x.submit "Yes", 'data-study--user-correction-target':'submitBtn',
+                        class:'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white 
+                        hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'%>
+                    <% end %>
+                  </div>
+              </div>
+            </div>
+            <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
