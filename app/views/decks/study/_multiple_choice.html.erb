@@ -1,46 +1,64 @@
-<div class="col-span-6">
-  <h3 class="text-lg leading-6 font-medium text-gray-900">Choose the correct answer <span class="mt-1 text-sm text-gray-500">One of those are correct! Only one!</span></h3>
-  
-</div>
-<div class="col-span-6">
-  <h3 class="text-center text-lg leading-6 font-medium text-gray-900"><%= @question.question %></h3>
-</div>
 
-<% shuffled_questions = @question.attributes.select { |k, v|  k == "correct_answer" || k.include?("wrong") }.values.shuffle %>
+<div class="h-full bg-gray-100" data-controller="study" >
+  <main class="max-w-7xl mx-auto pb-10 lg:py-12 lg:px-8">
+    <div class="lg:grid lg:grid-cols-12 lg:gap-x-10">
+      <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
+        <div class="bg-white shadow overflow-hidden sm:rounded-md">
+            <div class="shadow sm:rounded-md sm:overflow-hidden border" data-study-target="panel">
+              <div class="bg-white py-6 px-4 space-y-6 sm:p-6 " >
+                <div class="grid grid-cols-6 gap-6 " data-study-target="render">
+                  <div class="col-span-6">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">Choose the correct answer <span class="mt-1 text-sm text-gray-500">One of those are correct! Only one!</span></h3>
+                    
+                  </div>
+                  <div class="col-span-6">
+                    <h3 class="text-center text-lg leading-6 font-medium text-gray-900"><%= @question.question %></h3>
+                  </div>
 
-<div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag shuffled_questions[0], shuffled_questions[0], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-    'data-study-target':'inputField',
-    readonly: true %>
-</div>
+                  <% shuffled_questions = @question.attributes.select { |k, v|  k == "correct_answer" || k.include?("wrong") }.values.shuffle %>
+
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= text_area_tag shuffled_questions[0], shuffled_questions[0], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                      'data-study-target':'inputField',
+                      readonly: true %>
+                  </div>
 
 
-<div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag shuffled_questions[1], shuffled_questions[1], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-    'data-study-target':'inputField',
-    readonly: true %>
-</div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= text_area_tag shuffled_questions[1], shuffled_questions[1], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                      'data-study-target':'inputField',
+                      readonly: true %>
+                  </div>
 
-<div class="col-span-6 sm:col-span-3 red">
-  <%= text_area_tag shuffled_questions[2], shuffled_questions[2], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-    'data-study-target':'inputField',
-    readonly: true %>
-</div>
+                  <div class="col-span-6 sm:col-span-3 red">
+                    <%= text_area_tag shuffled_questions[2], shuffled_questions[2], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                      'data-study-target':'inputField',
+                      readonly: true %>
+                  </div>
 
-<div class="col-span-6 sm:col-span-3">
-  <%= text_area_tag shuffled_questions[3], shuffled_questions[3], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
-    'data-study-target':'inputField',
-    readonly: true %>
-</div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <%= text_area_tag shuffled_questions[3], shuffled_questions[3], class: "hover:cursor-pointer hover:bg-gray-200 mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:bg-blue-100 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+                      'data-study-target':'inputField',
+                      readonly: true %>
+                  </div>
 
-<div class="col-span-6 text-right">
-  <%= form_with model: @question, url: deck_study_path(@question.deck.id, @question.id), local: true,  html: {'data-study-target':'form'} do |x| %>
-    <%= x.text_field 'correct_answer', value: '', class:'hidden', 'data-study-target':'toSubmitField' %>
-    <%= link_to "Exit", root_path,  class:'bg-red-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500' %>
-    <%= x.submit "submit", class: 'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
-      'data-action':'click->study#check_empty_value',
-      'data-study-target':'submitBtn'
-    %>
-    
-  <% end %>
+                  <div class="col-span-6 text-right">
+                    <%= form_with model: @question, url: deck_study_path(@question.deck.id, @question.id), local: true,  html: {'data-study-target':'form'} do |x| %>
+                      <%= x.text_field 'correct_answer', value: '', class:'hidden', 'data-study-target':'toSubmitField' %>
+                      <%= link_to "Exit", root_path,  class:'bg-red-500 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500' %>
+                      <%= x.submit "submit", class: 'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                        'data-action':'click->study#check_empty_value',
+                        'data-study-target':'submitBtn'
+                      %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </main>
 </div>
