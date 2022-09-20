@@ -1,4 +1,6 @@
 class Deck < ApplicationRecord
+  paginates_per 10
+
   belongs_to :user
 
   has_many :questions, dependent: :destroy
