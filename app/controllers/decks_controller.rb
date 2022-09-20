@@ -24,6 +24,12 @@ class DecksController < ApplicationController
     @deck.update(deck_params)
   end
 
+  def destroy
+    deck = Deck.find(params[:id])
+    deck.destroy
+    redirect_to dashboard_index_path
+  end
+
   private
 
   def deck_params

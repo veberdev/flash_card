@@ -1,7 +1,7 @@
 class Deck < ApplicationRecord
   belongs_to :user
 
-  has_many :questions, dependent: :delete_all
+  has_many :questions, dependent: :destroy
 
   has_one_attached :deck_image, dependent: :destroy
 

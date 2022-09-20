@@ -1,5 +1,5 @@
 class QuestionData < ApplicationRecord
-  belongs_to :question, dependent: :destroy
+  belongs_to :question
 
   def wrong_times
     times_done - correct_times
